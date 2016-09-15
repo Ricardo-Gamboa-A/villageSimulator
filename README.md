@@ -1,5 +1,3 @@
-# mean-stack-registration-login-example
+##Village Simulator
 
-MEAN Stack User Registration and Login Example Application
-
-To see a demo and further details go to http://jasonwatmore.com/post/2015/12/09/MEAN-Stack-User-Registration-and-Login-Example.aspx
+You command a village that start growing getting more villagers, buildings and technologies

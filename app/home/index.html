@@ -1,0 +1,621 @@
+﻿<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <h3 class="text-center">
+        <p class="title" ng-if="editing==0">
+          <div class="uppercase">Hola {{vm.user.name}}!</div>
+        </p>
+        <p class="title" ng-if="editing==0">
+          <div class="uppercase">Del reinado de {{vm.user.villageName}}</div>
+        </p> 
+
+      </h3>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="inside">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    Crear
+                  </th>
+                  <th class="effect">
+                    Descripcion
+                  </th>
+                  <th class="cost">
+                    Costo
+                  </th>
+                  <th>
+                    Total
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <IMG SRC="app-content/villagers/generico.png" ALT="some text" HEIGHT=48>
+                    </td>
+                    <td>
+                      Trabajadores de tu imperio
+                    </td>
+                    <td>
+                      <button class="btn btn-default btn-xs" ng-click="villagers(1)">{{villagerCost()}} comida</button>
+                    </td>
+                    <td>
+                      {{allVillagers()}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      <IMG SRC="app-content/resources/comida.png" ALT="some text" HEIGHT=32>
+                      </th>
+                      <th>
+                        <IMG SRC="app-content/resources/madera.png" ALT="some text" HEIGHT=32>
+                        </th>
+                        <th ng-if="vm.user.mining==1">
+                          <IMG SRC="app-content/resources/piedra.png" ALT="some text" HEIGHT=32>
+                          </th>
+                          <th ng-if="vm.user.mining==1">
+                            <IMG SRC="app-content/resources/ore.png" ALT="some text" HEIGHT=32>
+                          </th>
+                          <th ng-if="vm.user.blacksmith==1">
+                            <IMG SRC="app-content/resources/ingot.png" ALT="some text" HEIGHT=32>
+                          </th>
+                          </tr>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              {{vm.user.food | number:0}}
+                            </td>
+                            <td>
+                              {{vm.user.wood | number:0}}
+                            </td>
+                            <td ng-if="vm.user.mining==1">
+                              {{vm.user.stone | number:0}}
+                            </td>
+                            <td ng-if="vm.user.mining==1">
+                              {{vm.user.metal | number:0}}
+                            </td>
+                          </tr>
+                          <tr class="active">
+                           <td><button class="btn btn-default btn-xs" ng-click="food(1)">+1</button></td>
+                           <td><button class="btn btn-default btn-xs" ng-click="wood(1)">+1</button></td>
+                           <td ng-if="vm.user.mining==1"><button class="btn btn-default btn-xs" ng-click="stone(1)">+1</button></td>
+                           <td ng-if="vm.user.mining==1"><button class="btn btn-default btn-xs" ng-click="ore(1)">+1</button></td>
+                           <td ng-if="vm.user.blacksmith==1"><button class="btn btn-default btn-xs" ng-click="metal(1)">+1</button></td>
+                         </tr>
+                         <tr>
+                          <td>
+                            <div ng-if="foodChange>0">
+                              <font color="green"> +{{foodChange | number:0}}</font>
+                            </div>
+                            <div ng-if="foodChange<0">
+                              <font color="red">{{foodChange | number:0}}</font>
+                            </div>
+                            <div ng-if="foodChange==0">
+                              {{foodChange | number:0}}
+                            </div>
+                          </td>
+                          <td>
+                            <div ng-if="woodChange>0">
+                              <font color="green">+{{woodChange | number:0}}</font>
+                            </div>
+                            <div ng-if="woodChange<0">
+                              <font color="red">{{woodChange | number:0}}</font>
+                            </div>
+                            <div ng-if="woodChange==0">
+                              {{woodChange | number:0}}
+                            </div>
+                          </td>
+                          <td ng-if="vm.user.mining==1">
+                            <div ng-if="stoneChange>0">
+                              <font color="green">+{{stoneChange | number:0}}</font>
+                            </div>
+                            <div ng-if="stoneChange<0">
+                              <font color="red">{{stoneChange | number:0}}</font>
+                            </div>
+                            <div ng-if="stoneChange==0">
+                              {{stoneChange | number:0}}
+                            </div>
+                          </td>
+                          <td ng-if="vm.user.mining==1">
+                            <div ng-if="metalChange>0">
+                              <font color="green">+{{metalChange | number:0}}</font>
+                            </div>
+                            <div ng-if="metalChange<0">
+                              <font color="red">{{metalChange | number:0}}</font>
+                            </div>
+                            <div ng-if="metalChange==0">
+                              {{metalChange | number:0}}
+                            </div>
+                          </td>
+                          <td ng-if="vm.user.blacksmith==1">
+                            <div ng-if="metalChange>0">
+                              <font color="green">+{{metalChange | number:0}}</font>
+                            </div>
+                            <div ng-if="metalChange<0">
+                              <font color="red">{{metalChange | number:0}}</font>
+                            </div>
+                            <div ng-if="metalChange==0">
+                              {{metalChange | number:0}}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    <div class="inside">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>
+                              Tecnologias
+                            </th>
+                            <th class="effect">
+                              Efecto
+                            </th>
+                            <th class="cost">
+                              Desarrollo
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-if="vm.user.agriculture!=1">
+                            <td>
+                              Agricultura
+                            </td>
+                            <td>
+                              Los aldeanos pueden dedicarse a trabajar la tierra para obtener comida.
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="agriculture()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.trapping!=1">
+                            <td>
+                              Tramperia
+                            </td>
+                            <td>
+                              Los aldeanos pueden cazar animales para obtener comida. 
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="trapping()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.animalHusbandry!=1 && vm.user.agriculture==1">
+                            <td>
+                              Cria de animales
+                            </td>
+                            <td>
+                              Los animales pueden ser criados para tener un suministro de comida
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="animalHusbandry()">100 comida<br> 200 madera<br> 50 piedra</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.wheel!=1 && vm.user.agriculture==1 ">
+                            <td>
+                              La rueda
+                            </td>
+                            <td>
+                              Se descubre el funcionamiento de la rueda
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="wheel()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.road!=1 && vm.user.wheel==1">
+                            <td>
+                              Caminos
+                            </td>
+                            <td>
+                              Se pueden mejorar los caminos de la ciudad al construirlos de otros materiales
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="road()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.cart!=1 && vm.user.road==1 && vm.user.animalHusbandry==1">
+                            <td>
+                              Carretas
+                            </td>
+                            <td>
+                              Se pueden usar vehiculos para transportar recursos lo cual ayuda a la velocidad de recoleccion
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="cart()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.currency!=1 && vm.user.road==1 && vm.user.iron==1">
+                            <td>
+                              Moneda
+                            </td>
+                            <td>
+                              Te permite crear un mercado para comerciar con otras ciudades
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="currency()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.mining!=1">
+                            <td>
+                              Minar
+                            </td>
+                            <td>
+                              Tus aldeanos pueden dedicarse a trabajar con la tierra para obtener piedra y metal
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="mining()">100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.iron!=1 && vm.user.mining==1">
+                            <td>
+                              Trabajo con hierro
+                            </td>
+                            <td>
+                              Te permite trabajar el metal
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="iron()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.tool!=1 && vm.user.iron==1">
+                            <td>
+                              Herramientas
+                            </td>
+                            <td>
+                              Puedes tener herrerias que crean herramientas para mejorar el trabajo de tus aldeanos
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="tool()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.masonry!=1 && vm.user.mining==1">
+                            <td>
+                              Albañeria
+                            </td>
+                            <td>
+                              Construcciones simples
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="masonry()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.construction!=1 && vm.user.masonry==1">
+                            <td>
+                              Construccion
+                            </td>
+                            <td>
+                              Uso de materiales y tecnicas mas complejas en la construccion
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="construction()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                          <tr ng-if="vm.user.guild!=1 && vm.user.currency==1 && vm.user.construction==1">
+                            <td>
+                              Gremios
+                            </td>
+                            <td>
+                              Grupos de trabajadores se dedican a inventar nuevas tecnicas y mejorar sus formas de trabajar
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="guild()">200 comida<br> 100 madera</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="inside">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            Desempleados
+                          </th>
+                          <th>
+                            {{vm.user.villagers}}
+                          </th>
+                          <th>
+                            Emplear
+                          </th>
+                          <th>
+                            Sacar
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            Recolectores
+                          </td>
+                          <td>
+                            {{vm.user.gatherers}}
+                          </td>
+                          <td>
+                            <button class="btn btn-default btn-xs" ng-click="gatherers(1)">+1</button>
+                          </td>
+                          <td>
+                            <button class="btn btn-default btn-xs" ng-click="gatherers(-1)">-1</button>
+                          </td>
+                        </tr>
+
+                        <tr class="active">
+                          <td>
+                            <IMG SRC="app-content/villagers/lenador.png" ALT="some text" HEIGHT=48>
+                            </td>
+                            <td>
+                              {{vm.user.lumberjacks}}
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="lumberjacks(1)">+1</button>
+                            </td>
+                            <td>
+                              <button class="btn btn-default btn-xs" ng-click="lumberjacks(-1)">-1</button>
+                            </td>
+                          </tr>
+                          <tr class="active" ng-if="vm.user.mining==1">
+                            <td>
+                              <IMG SRC="app-content/villagers/excavador.png" ALT="some text" HEIGHT=48>
+                              </td>
+                              <td>
+                                {{vm.user.stoneMiners}}
+                              </td>
+                              <td>
+                                <button class="btn btn-default btn-xs" ng-click="stoneMiners(1)">+1</button>
+                              </td>
+                              <td>
+                                <button class="btn btn-default btn-xs" ng-click="stoneMiners(-1)">-1</button>
+                              </td>
+                            </tr>
+                            <tr class="active" ng-if="vm.user.mining==1">
+                              <td>
+                                <IMG SRC="app-content/villagers/minero.png" ALT="some text" HEIGHT=48>
+                                </td>
+                                <td>
+                                  {{vm.user.metalMiners}}
+                                </td>
+                                <td>
+                                  <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
+                                </td>
+                                <td>
+                                  <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
+                                </td>
+                                <tr ng-if="vm.user.agriculture==true">
+                                  <td>
+                                    Agricultores
+                                  </td>
+                                  <td>
+                                    {{vm.user.farmers}}
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="farmers(1)">100 comida,<br> 50 madera</button>
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="farmers(-1)">-1</button>
+                                  </td>
+                                </tr>
+                                <tr ng-if="vm.user.trapping==true">
+                                  <td>
+                                    Cazadores
+                                  </td>
+                                  <td>
+                                    {{vm.user.hunters}}
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="hunters(1)">80 madera,<br> 20 metal</button>
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="hunters(-1)">-1</button>
+                                  </td>
+                                </tr>
+                                <tr ng-if="vm.user.animalHusbandry==true">
+                                  <td>
+                                    Criadores
+                                  </td>
+                                  <td>
+                                    {{vm.user.ranchers}}
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="ranchers(1)">80 comida,<br> 80 madera</button>
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="ranchers(-1)">-1</button>
+                                  </td>
+                                </tr>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="inside">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Edificios
+            </th>
+            <th class="effect">
+              Efecto
+            </th>
+            <th class="cost">
+              Contruir
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-if="vm.user.windmill!=1 && vm.user.agriculture==1 && vm.user.masonry==1">
+            <td>
+              Granero
+            </td>
+            <td>
+              Te permite tener mas comida que 500 guardada.
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="windmill()">500 madera,<br> 200 piedra</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.sawmill!=1 && vm.user.masonry==1  && vm.user.iron==1">
+            <td>
+              Aserradero
+            </td>
+            <td>
+              Te permite tener mas madera que 500 guardada.
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="sawmill()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.furnace!=1 && vm.user.masonry==1">
+            <td>
+              Fundicion
+            </td>
+            <td>
+              Te permite usar metal para conseguir hierro.
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="furnace()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.rockRoad!=1 && vm.user.road==1">
+            <td>
+              Camino de piedra
+            </td>
+            <td>
+              Cambia los caminos de tierra por caminos de piedra lo cual aumenta la produccion.
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="rockRoad()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.market!=1 && vm.user.currency==1 && vm.user.masonry==1">
+            <td>
+              Mercado
+            </td>
+            <td>
+              Te permite cambiar recursos con las ciudades cercanas.
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="market()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.blacksmith!=1 && vm.user.iron==1">
+            <td>
+              Herreria
+            </td>
+            <td>
+              Te permite transformar hierro en herramientas
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="blacksmith()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.hut!=1">
+            <td>
+              Rucas
+            </td>
+            <td>
+              Crea rucas para que vivan tus aldeanos, aumenta el limite de poblacion hasta 20
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="hut()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.cabin!=1 && vm.user.hut==1 && vm.user.masonry==1">
+            <td>
+              Casas de piedra
+            </td>
+            <td>
+              Cambia las rucas por casas de piedra, aumenta el limite de poblacion hasta 40 
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="house()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.house!=1 && vm.user.cabin==1 && vm.user.construction==1">
+            <td>
+              Cabañas
+            </td>
+            <td>
+              Cambia las casas por cabañas de madera, aumenta el limite de poblacion hasta 100
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="house()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.quarry!=1 && vm.user.mining==1">
+            <td>
+              Cantera
+            </td>
+            <td>
+              Te permite tener mas que 500 de piedra guardado
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="quarry()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+          <tr ng-if="vm.user.mine!=1  && vm.user.mining==1">
+            <td>
+              Mina
+            </td>
+            <td>
+              Te permite tener mas que 500 de metal guardado
+            </td>
+            <td>
+              <button class="btn btn-default btn-xs" ng-click="mine()">200 comida<br> 100 madera</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+                        </div>
+                      </div>
+        <!--<div class="col-md-4">
+          <div class="inside"> 
+          <div class="col-md-6">
+            <div class="center" >
+              <button type="button" class="btn btn-default btn-sm" ng-click="vm.saveUser()">Guardar ciudad</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="center" >
+              <div class="flash-message" ng-if="flash">
+                <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+              </div>
+              Modificar <input type="checkbox" ng-model="editing" ng-true-value="1" ng-false-value="0">
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+</div>

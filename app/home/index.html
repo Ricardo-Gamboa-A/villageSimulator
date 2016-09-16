@@ -9,7 +9,7 @@
         </p>
         <p class="title" ng-if="editing==0">
           <div class="uppercase">Del reinado de {{vm.user.villageName}}</div>
-        </p> 
+        </p>
 
       </h3>
     </div>
@@ -56,7 +56,7 @@
                     </td>
                   </tr>
                 </tbody>
-              </table> 
+              </table>
               <table class="table">
                 <thead>
                   <tr>
@@ -72,7 +72,7 @@
                           <th ng-if="vm.user.mining==1">
                             <IMG SRC="app-content/resources/ore.png" ALT="some text" HEIGHT=32>
                           </th>
-                          <th ng-if="vm.user.blacksmith==1">
+                          <th ng-if="vm.user.furnace==1">
                             <IMG SRC="app-content/resources/ingot.png" ALT="some text" HEIGHT=32>
                           </th>
                           </tr>
@@ -90,7 +90,7 @@
                               {{vm.user.stone | number:0}}
                             </td>
                             <td ng-if="vm.user.mining==1">
-                              {{vm.user.metal | number:0}}
+                              {{vm.user.ore | number:0}}
                             </td>
                           </tr>
                           <tr class="active">
@@ -98,7 +98,7 @@
                            <td><button class="btn btn-default btn-xs" ng-click="wood(1)">+1</button></td>
                            <td ng-if="vm.user.mining==1"><button class="btn btn-default btn-xs" ng-click="stone(1)">+1</button></td>
                            <td ng-if="vm.user.mining==1"><button class="btn btn-default btn-xs" ng-click="ore(1)">+1</button></td>
-                           <td ng-if="vm.user.blacksmith==1"><button class="btn btn-default btn-xs" ng-click="metal(1)">+1</button></td>
+                           <td ng-if="vm.user.furnace==1"></td>
                          </tr>
                          <tr>
                           <td>
@@ -135,17 +135,17 @@
                             </div>
                           </td>
                           <td ng-if="vm.user.mining==1">
-                            <div ng-if="metalChange>0">
-                              <font color="green">+{{metalChange | number:0}}</font>
+                            <div ng-if="oreChange>0">
+                              <font color="green">+{{oreChange | number:0}}</font>
                             </div>
-                            <div ng-if="metalChange<0">
-                              <font color="red">{{metalChange | number:0}}</font>
+                            <div ng-if="oreChange<0">
+                              <font color="red">{{oreChange | number:0}}</font>
                             </div>
-                            <div ng-if="metalChange==0">
-                              {{metalChange | number:0}}
+                            <div ng-if="oreChange==0">
+                              {{oreChange | number:0}}
                             </div>
                           </td>
-                          <td ng-if="vm.user.blacksmith==1">
+                          <td ng-if="vm.user.furnace==1">
                             <div ng-if="metalChange>0">
                               <font color="green">+{{metalChange | number:0}}</font>
                             </div>
@@ -192,7 +192,7 @@
                               Tramperia
                             </td>
                             <td>
-                              Los aldeanos pueden cazar animales para obtener comida. 
+                              Los aldeanos pueden cazar animales para obtener comida.
                             </td>
                             <td>
                               <button class="btn btn-default btn-xs" ng-click="trapping()">200 comida<br> 100 madera</button>
@@ -391,13 +391,13 @@
                                 <IMG SRC="app-content/villagers/minero.png" ALT="some text" HEIGHT=48>
                                 </td>
                                 <td>
-                                  {{vm.user.metalMiners}}
+                                  {{vm.user.oreMiners}}
                                 </td>
                                 <td>
-                                  <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
+                                  <button class="btn btn-default btn-xs" ng-click="oreMiners(1)">+1</button>
                                 </td>
                                 <td>
-                                  <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
+                                  <button class="btn btn-default btn-xs" ng-click="oreMiners(-1)">-1</button>
                                 </td>
                                 <tr ng-if="vm.user.agriculture==true">
                                   <td>
@@ -515,7 +515,7 @@
               <button class="btn btn-default btn-xs" ng-click="market()">200 comida<br> 100 madera</button>
             </td>
           </tr>
-          <tr ng-if="vm.user.blacksmith!=1 && vm.user.iron==1">
+          <tr ng-if="vm.user.blacksmith!=1 && vm.user.furnace==1 && vm.user.iron==1">
             <td>
               Herreria
             </td>
@@ -542,7 +542,7 @@
               Casas de piedra
             </td>
             <td>
-              Cambia las rucas por casas de piedra, aumenta el limite de poblacion hasta 40 
+              Cambia las rucas por casas de piedra, aumenta el limite de poblacion hasta 40
             </td>
             <td>
               <button class="btn btn-default btn-xs" ng-click="house()">200 comida<br> 100 madera</button>
@@ -588,7 +588,7 @@
                         </div>
                       </div>
         <!--<div class="col-md-4">
-          <div class="inside"> 
+          <div class="inside">
           <div class="col-md-6">
             <div class="center" >
               <button type="button" class="btn btn-default btn-sm" ng-click="vm.saveUser()">Guardar ciudad</button>

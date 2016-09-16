@@ -183,7 +183,7 @@
         }
         $scope.deadvillager = function(number) {
             if ($scope.vm.user.villagers >= -number){
-              $scope.villagers(number);  
+              $scope.villagers(number);
             } else if ($scope.vm.user.villagers + $scope.vm.user.lumberjacks > -number){
                 $scope.lumberjacks(number + $scope.vm.user.villagers,1);
                 $scope.villagers(- $scope.vm.user.villagers);
@@ -260,7 +260,7 @@
                 $scope.vm.user.currency=1;
            }
         }
-        $scope.guild = function() {    
+        $scope.guild = function() {
             if ($scope.spendResources(200,100,0,0,1)) {
                 $scope.vm.user.guild=1;
            }
@@ -292,7 +292,7 @@
                 $scope.vm.user.rockRoad=1;
            }
         }
-        $scope.market = function() {    
+        $scope.market = function() {
             if ($scope.spendResources(200,100,0,0,1)) {
                 $scope.vm.user.market=1;
            }
@@ -322,11 +322,11 @@
                 $scope.vm.user.mine=1;
            }
         }
-        $scope.quarry = function() {    
+        $scope.quarry = function() {
             if ($scope.spendResources(200,100,0,0,1)) {
                 $scope.vm.user.quarry=1;
            }
-        } 
+        }
         $scope.foodChange=0;
         $scope.woodChange=0;
         $scope.stoneChange=0;

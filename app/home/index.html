@@ -92,6 +92,9 @@
                             <td ng-if="vm.user.mining==1">
                               {{vm.user.ore | number:0}}
                             </td>
+                            <td ng-if="vm.user.furnace==1">
+                              {{vm.user.metal | number:0}}
+                            </td>
                           </tr>
                           <tr class="active">
                            <td><button class="btn btn-default btn-xs" ng-click="food(1)">+1</button></td>
@@ -329,7 +332,7 @@
                       <thead>
                         <tr>
                           <th>
-                            Desempleados
+                            <IMG SRC="app-content/villagers/desempleado.png" ALT="some text" HEIGHT=48>
                           </th>
                           <th>
                             {{vm.user.villagers}}
@@ -345,7 +348,7 @@
                       <tbody>
                         <tr>
                           <td>
-                            Recolectores
+                            <IMG SRC="app-content/villagers/recolector.png" ALT="some text" HEIGHT=48>
                           </td>
                           <td>
                             {{vm.user.gatherers}}
@@ -399,9 +402,26 @@
                                 <td>
                                   <button class="btn btn-default btn-xs" ng-click="oreMiners(-1)">-1</button>
                                 </td>
-                                <tr ng-if="vm.user.agriculture==true">
+                              </tr>
+
+                              <tr class="active" ng-if="vm.user.furnace==1">
+                                <td>
+                                  Herrero
+                                  </td>
                                   <td>
-                                    Agricultores
+                                    {{vm.user.metalMiners}}
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
+                                  </td>
+                                </tr>
+
+                              <tr ng-if="vm.user.agriculture==true">
+                                  <td>
+                                    <IMG SRC="app-content/villagers/agricultor.png" ALT="some text" HEIGHT=48>
                                   </td>
                                   <td>
                                     {{vm.user.farmers}}
@@ -415,7 +435,7 @@
                                 </tr>
                                 <tr ng-if="vm.user.trapping==true">
                                   <td>
-                                    Cazadores
+                                    <IMG SRC="app-content/villagers/cazador.png" ALT="some text" HEIGHT=48>
                                   </td>
                                   <td>
                                     {{vm.user.hunters}}
@@ -429,7 +449,7 @@
                                 </tr>
                                 <tr ng-if="vm.user.animalHusbandry==true">
                                   <td>
-                                    Criadores
+                                    <IMG SRC="app-content/villagers/criador.png" ALT="some text" HEIGHT=48>
                                   </td>
                                   <td>
                                     {{vm.user.ranchers}}

@@ -43,7 +43,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <IMG SRC="app-content/villagers/generico.png" ALT="some text" HEIGHT=48>
+                    <IMG SRC="app-content/villagers/aldeano.png" ALT="some text" HEIGHT=48>
                     </td>
                     <td>
                       Trabajadores de tu imperio
@@ -406,7 +406,7 @@
 
                               <tr class="active" ng-if="vm.user.furnace==1">
                                 <td>
-                                  Herrero
+                                  <IMG SRC="app-content/villagers/herrero.png" ALT="some text" HEIGHT=48>
                                   </td>
                                   <td>
                                     {{vm.user.metalMiners}}
@@ -565,7 +565,7 @@
               Cambia las rucas por casas de piedra, aumenta el limite de poblacion hasta 40
             </td>
             <td>
-              <button class="btn btn-default btn-xs" ng-click="house()">200 comida<br> 100 madera</button>
+              <button class="btn btn-default btn-xs" ng-click="cabin()">200 comida<br> 100 madera</button>
             </td>
           </tr>
           <tr ng-if="vm.user.house!=1 && vm.user.cabin==1 && vm.user.construction==1">

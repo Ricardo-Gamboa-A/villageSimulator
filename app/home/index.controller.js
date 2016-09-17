@@ -347,7 +347,7 @@
         $scope.stoneChange=0;
         $scope.oreChange=0;
         $scope.editing=0;
-        $scope.cheat=10;
+        $scope.cheat=1;
         var nofood=0;
         $interval(function() {
             $scope.foodChange= $scope.vm.user.gatherers + $scope.vm.user.farmers*(3/2) + $scope.vm.user.hunters*(3/2) - (($scope.allVillagers() - ($scope.vm.user.villagers* (1 / 2))) * (1 / 2));
@@ -358,8 +358,13 @@
             } else $scope.vm.user.food = nofood;
             $scope.woodChange = $scope.vm.user.lumberjacks/ 2;
             $scope.stoneChange = $scope.vm.user.stoneMiners / 3;
-            $scope.oreChange = $scope.vm.user.oreMiners / 10 - $scope.vm.user.metalMiners/6;
-            $scope.metalChange = $scope.vm.user.metalMiners / 60;
+            $scope.oreChange = $scope.vm.user.oreMiners / 10;
+            if (($scope.vm.user.ore + $scope.oreChange) >= $scope.vm.user.metalMiners/6){
+              $scope.metalChange = $scope.vm.user.metalMiners / 60;
+              $scope.oreChange = $scope.oreChange - $scope.vm.user.metalMiners/6;
+            } else {
+              $scope.metalChange=0;
+            }
             $scope.vm.user.wood = $scope.vm.user.wood + $scope.woodChange*$scope.cheat;
             $scope.vm.user.stone = $scope.vm.user.stone + $scope.stoneChange*$scope.cheat;
             $scope.vm.user.ore = $scope.vm.user.ore + $scope.oreChange*$scope.cheat;

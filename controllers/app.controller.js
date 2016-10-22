@@ -15,6 +15,12 @@ router.get('/token', function (req, res) {
     res.send(req.session.token);
 });
 
+router.get('/settoken', function (req, res) {
+    session.token=req;
+});
+
+
+
 // serve angular app files from the '/app' route
 router.use('/', express.static('app'));
 

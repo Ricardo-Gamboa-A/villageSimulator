@@ -12,9 +12,14 @@
         vm.login= null;
         vm.saveUser = saveUser;
         vm.createUser = createUser;
+        vm.authenticateUser = authenticateUser;
         vm.deleteUser = deleteUser;
 
         initController();
+
+        console.log($window.jwtToken);
+
+        console.log($window);
         if (vm.user == null) initDefault();
 
         function initDefault(){
@@ -72,10 +77,21 @@
         }
 
         function createUser() {
-            console.log(vm.user);
             UserService.Create(vm.user)
               .then(function () {
                   FlashService.Success('El usuario ha sido creado');
+                })
+                .catch(function (error) {
+                  FlashService.Error(error);
+                });
+        }
+
+        function authenticateUser() {
+            UserService.AuthenticateUser(vm.singIn)
+              .then(function (token) {
+                  $window.location.href = '/';
+                  console.log($window.jwtToken);
+
                 })
                 .catch(function (error) {
                   FlashService.Error(error);

@@ -15,6 +15,7 @@
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
+        service.AuthenticateUser= AuthenticateUser;
 
         return service;
 
@@ -35,8 +36,12 @@
         }
 
         function Create(user) {
-          console.log(user)
             return $http.post('/api/users/register', user).then(handleSuccess, handleError);
+        }
+
+        function AuthenticateUser(user) {
+          console.log(user);
+            return $http.post('/login', user).then(handleSuccess, handleError);
         }
 
         function Update(user) {

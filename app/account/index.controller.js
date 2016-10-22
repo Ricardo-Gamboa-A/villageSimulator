@@ -14,11 +14,20 @@
         vm.createUser = createUser;
         vm.authenticateUser = authenticateUser;
         vm.deleteUser = deleteUser;
-        vm.logOut=logOut;
+        vm.logOut = logOut;
+        console.log($window.jwtToken);
+        if ($window.jwtToken == ''){
+          vm.token = 1;
+          console.log(vm.token);
+        }
+        else{
+          vm.token=0;
+        }
 
         initController();
 
         if (vm.user == null) initDefault();
+
 
         function initDefault(){
             vm.login= false;
@@ -124,6 +133,7 @@
                     FlashService.Error(error);
                 });
         }
+
     }
 
 })();

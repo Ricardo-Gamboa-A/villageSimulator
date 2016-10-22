@@ -8,3 +8,16 @@
 div.uppercase {
 		text-transform: capitalize;
 }
+div.text {
+  display: inline-block;
+}
+
+div.inside-float:nth-of-type(odd){
+  width: 50%;
+  float: left;
+}
+
+div.inside-float:nth-of-type(even){
+  width: 50%;
+  float: right;
+}

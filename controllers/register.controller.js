@@ -9,6 +9,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     // register using api to maintain clean separation between layers
+    console.log(req.body);
     request.post({
         url: config.apiUrl + '/users/register',
         form: req.body,

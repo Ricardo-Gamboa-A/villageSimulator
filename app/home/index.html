@@ -5,10 +5,10 @@
     <div class="col-md-4">
       <h3 class="text-center">
         <p class="title" ng-if="editing==0">
-          <div class="uppercase">Hola {{vm.user.name}}!</div>
+          <div class="uppercase">Hola <div class="text" ng-if="!!vm.user.name">{{vm.user.name}}!</div><div class="text" ng-if="!vm.user.name">Anonimo!</div></div>
         </p>
         <p class="title" ng-if="editing==0">
-          <div class="uppercase">Del reinado de {{vm.user.villageName}}</div>
+          <div class="uppercase">Del reinado de <div class="text" ng-if="!!vm.user.name">{{vm.user.villageName}}!</div><div class="text" ng-if="!vm.user.name">Algun Lugar</div></div>
         </p>
 
       </h3>
@@ -164,17 +164,12 @@
                     </table>
                   </div>
                     <div class="inside">
+                      <b>Arbol de tecnologias</b>
                       <table class="table">
                         <thead>
                           <tr>
                             <th>
-                              Tecnologias
-                            </th>
-                            <th class="effect">
-                              Efecto
-                            </th>
-                            <th class="cost">
-                              Desarrollo
+
                             </th>
                           </tr>
                         </thead>
@@ -328,154 +323,92 @@
                 </div>
                 <div class="col-md-6">
                   <div class="inside">
+
+
+
+
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
+                            <div>
                             <IMG SRC="app-content/villagers/desempleado.png" ALT="some text" HEIGHT=48>
-                          </th>
-                          <th>
-                            {{vm.user.villagers}}
-                          </th>
-                          <th>
-                            Emplear
-                          </th>
-                          <th>
-                            Sacar
+                            <b>Aldeanos por emplear:</b>
+                            :{{vm.user.villagers}}
+                            </div>
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <IMG SRC="app-content/villagers/recolector.png" ALT="some text" HEIGHT=48>
-                          </td>
-                          <td>
-                            {{vm.user.gatherers}}
-                          </td>
-                          <td>
-                            <button class="btn btn-default btn-xs" ng-click="gatherers(1)">+1</button>
-                          </td>
-                          <td>
-                            <button class="btn btn-default btn-xs" ng-click="gatherers(-1)">-1</button>
-                          </td>
-                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="inside-float">
+                        <p><IMG SRC="app-content/villagers/recolector.png" ALT="some text" HEIGHT=48>
+                        Recolectores:{{vm.user.gatherers}} </p>
+                        <button class="btn btn-default btn-xs" ng-click="gatherers(1)">+1</button>
+                        <button class="btn btn-default btn-xs" ng-click="gatherers(-1)">-1</button>
+                    </div>
 
-                        <tr class="active">
-                          <td>
-                            <IMG SRC="app-content/villagers/lenador.png" ALT="some text" HEIGHT=48>
-                            </td>
-                            <td>
-                              {{vm.user.lumberjacks}}
-                            </td>
-                            <td>
-                              <button class="btn btn-default btn-xs" ng-click="lumberjacks(1)">+1</button>
-                            </td>
-                            <td>
-                              <button class="btn btn-default btn-xs" ng-click="lumberjacks(-1)">-1</button>
-                            </td>
-                          </tr>
-                          <tr class="active" ng-if="vm.user.mining==1">
-                            <td>
-                              <IMG SRC="app-content/villagers/excavador.png" ALT="some text" HEIGHT=48>
-                              </td>
-                              <td>
-                                {{vm.user.stoneMiners}}
-                              </td>
-                              <td>
-                                <button class="btn btn-default btn-xs" ng-click="stoneMiners(1)">+1</button>
-                              </td>
-                              <td>
-                                <button class="btn btn-default btn-xs" ng-click="stoneMiners(-1)">-1</button>
-                              </td>
-                            </tr>
-                            <tr class="active" ng-if="vm.user.mining==1">
-                              <td>
-                                <IMG SRC="app-content/villagers/minero.png" ALT="some text" HEIGHT=48>
-                                </td>
-                                <td>
-                                  {{vm.user.oreMiners}}
-                                </td>
-                                <td>
-                                  <button class="btn btn-default btn-xs" ng-click="oreMiners(1)">+1</button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-default btn-xs" ng-click="oreMiners(-1)">-1</button>
-                                </td>
-                              </tr>
+                    <div class="inside-float">
+                      <p><IMG SRC="app-content/villagers/lenador.png" ALT="some text" HEIGHT=48>
+                      Leñadores:{{vm.user.lumberjacks}}</p>
+                      <button class="btn btn-default btn-xs" ng-click="lumberjacks(1)">+1</button>
+                      <button class="btn btn-default btn-xs" ng-click="lumberjacks(-1)">-1</button>
 
-                              <tr class="active" ng-if="vm.user.furnace==1">
-                                <td>
-                                  <IMG SRC="app-content/villagers/herrero.png" ALT="some text" HEIGHT=48>
-                                  </td>
-                                  <td>
-                                    {{vm.user.metalMiners}}
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
-                                  </td>
-                                </tr>
+                    </div>
 
-                              <tr ng-if="vm.user.agriculture==true">
-                                  <td>
-                                    <IMG SRC="app-content/villagers/agricultor.png" ALT="some text" HEIGHT=48>
-                                  </td>
-                                  <td>
-                                    {{vm.user.farmers}}
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="farmers(1)">100 comida,<br> 50 madera</button>
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="farmers(-1)">-1</button>
-                                  </td>
-                                </tr>
-                                <tr ng-if="vm.user.trapping==true">
-                                  <td>
-                                    <IMG SRC="app-content/villagers/cazador.png" ALT="some text" HEIGHT=48>
-                                  </td>
-                                  <td>
-                                    {{vm.user.hunters}}
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="hunters(1)">80 madera,<br> 20 metal</button>
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="hunters(-1)">-1</button>
-                                  </td>
-                                </tr>
-                                <tr ng-if="vm.user.animalHusbandry==true">
-                                  <td>
-                                    <IMG SRC="app-content/villagers/criador.png" ALT="some text" HEIGHT=48>
-                                  </td>
-                                  <td>
-                                    {{vm.user.ranchers}}
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="ranchers(1)">80 comida,<br> 80 madera</button>
-                                  </td>
-                                  <td>
-                                    <button class="btn btn-default btn-xs" ng-click="ranchers(-1)">-1</button>
-                                  </td>
-                                </tr>
-                              </tr>
-                            </tbody>
-                          </table>
+                    <div class="inside-float" ng-if="vm.user.mining==1">
+                    <p><IMG SRC="app-content/villagers/excavador.png" ALT="some text" HEIGHT=48>
+                    Excavadores:{{vm.user.stoneMiners}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="stoneMiners(1)">+1</button>
+                    <button class="btn btn-default btn-xs" ng-click="stoneMiners(-1)">-1</button>
+                  </div>
+
+                    <div class="inside-float" ng-if="vm.user.mining==1">
+                    <p><IMG SRC="app-content/villagers/minero.png" ALT="some text" HEIGHT=48>
+                    Mineros:{{vm.user.oreMiners}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="oreMiners(1)">+1</button>
+                    <button class="btn btn-default btn-xs" ng-click="oreMiners(-1)">-1</button>
+                    </div>
+
+                    <div class="inside-float" ng-if="vm.user.furnace==1">
+                    <p><IMG SRC="app-content/villagers/herrero.png" ALT="some text" HEIGHT=48>
+                    {{vm.user.metalMiners}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
+                    <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
+                    </div>
+
+                    <div class="inside-float" ng-if="vm.user.agriculture==true">
+                    <p><IMG SRC="app-content/villagers/agricultor.png" ALT="some text" HEIGHT=48>
+                    {{vm.user.farmers}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="farmers(1)">100 comida,<br> 50 madera</button>
+                    <button class="btn btn-default btn-xs" ng-click="farmers(-1)">-1</button>
+                    </div>
+
+                    <div class="inside-float" ng-if="vm.user.divapping==true">
+                    <p><IMG SRC="app-content/villagers/cazador.png" ALT="some text" HEIGHT=48>
+                    {{vm.user.hunters}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="hunters(1)">80 madera,<br> 20 metal</button>
+                    <button class="btn btn-default btn-xs" ng-click="hunters(-1)">-1</button>
+                    </div>
+
+                    <div class="inside-float" ng-if="vm.user.animalHusbandry==true">
+                    <p><IMG SRC="app-content/villagers/criador.png" ALT="some text" HEIGHT=48>
+                    {{vm.user.ranchers}}</p>
+                    <button class="btn btn-default btn-xs" ng-click="ranchers(1)">80 comida,<br> 80 madera</button>
+                    <button class="btn btn-default btn-xs" ng-click="ranchers(-1)">-1</button>
+                    </div>
+</div>
+<div style="clear: left;">
+</div>
+
+
                           <div class="inside">
+                            <b>Edificios</b>
       <table class="table">
         <thead>
           <tr>
             <th>
-              Edificios
-            </th>
-            <th class="effect">
-              Efecto
-            </th>
-            <th class="cost">
-              Contruir
             </th>
           </tr>
         </thead>

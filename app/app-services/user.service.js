@@ -16,6 +16,7 @@
         service.Update = Update;
         service.Delete = Delete;
         service.AuthenticateUser= AuthenticateUser;
+        service.UnAuthenticateUser= UnAuthenticateUser;
 
         return service;
 
@@ -40,8 +41,11 @@
         }
 
         function AuthenticateUser(user) {
-          console.log(user);
             return $http.post('/login', user).then(handleSuccess, handleError);
+        }
+
+        function UnAuthenticateUser() {
+            return $http.get('/login').then(handleSuccess, handleError);
         }
 
         function Update(user) {

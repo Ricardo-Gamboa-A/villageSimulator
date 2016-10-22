@@ -14,12 +14,10 @@
         vm.createUser = createUser;
         vm.authenticateUser = authenticateUser;
         vm.deleteUser = deleteUser;
+        vm.logOut=logOut;
 
         initController();
 
-        console.log($window.jwtToken);
-
-        console.log($window);
         if (vm.user == null) initDefault();
 
         function initDefault(){
@@ -90,8 +88,16 @@
             UserService.AuthenticateUser(vm.singIn)
               .then(function (token) {
                   $window.location.href = '/';
-                  console.log($window.jwtToken);
+                })
+                .catch(function (error) {
+                  FlashService.Error(error);
+                });
+        }
 
+        function logOut() {
+            UserService.UnAuthenticateUser()
+              .then(function () {
+                $window.location.href = '/';
                 })
                 .catch(function (error) {
                   FlashService.Error(error);

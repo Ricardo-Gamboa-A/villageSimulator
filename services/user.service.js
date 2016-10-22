@@ -12,6 +12,7 @@ var service = {};
 service.authenticate = authenticate;
 service.getById = getById;
 service.create = create;
+service.createInUse = createInUse;
 service.update = update;
 service.delete = _delete;
 
@@ -71,59 +72,135 @@ function create(userParam) {
             }
         });
 
-    function createUser() {
-        // set user object to userParam without the cleartext password
-        userParam.villagers=0;
-        userParam.gatherers=0;
-        userParam.lumberjacks=0;
-        userParam.stoneMiners=0;
-        userParam.metalMiners=0;
-        userParam.oreMiners=0;
-        userParam.farmers=0;
-        userParam.hunters=0;
-        userParam.ranchers=0;
-        userParam.food=0;
-        userParam.wood=0;
-        userParam.stone=0;
-        userParam.ore=0;
-        userParam.metal=0;
-        userParam.agriculture=0;
-        userParam.animalHusbandry=0;
-        userParam.trapping=0;
-        userParam.mining=0;
-        userParam.masonry=0;
-        userParam.construction=0;
-        userParam.iron=0;
-        userParam.tool=0;
-        userParam.wheel=0;
-        userParam.road=0;
-        userParam.currency=0;
-        userParam.guild=0;
-        userParam.cart=0;
-        userParam.windmill=0;
-        userParam.sawmill=0;
-        userParam.furnace=0;
-        userParam.rockRoad=0;
-        userParam.market=0;
-        userParam.blacksmith=0;
-        userParam.hut=0;
-        userParam.cabin=0;
-        userParam.house=0;
-        userParam.mine=0;
-        userParam.quarry=0;
-        var user = _.omit(userParam, 'password');
+        function createUser() {
+            // set user object to userParam without the cleartext password
+            userParam.villagers=0;
+            userParam.gatherers=0;
+            userParam.lumberjacks=0;
+            userParam.stoneMiners=0;
+            userParam.metalMiners=0;
+            userParam.oreMiners=0;
+            userParam.farmers=0;
+            userParam.hunters=0;
+            userParam.ranchers=0;
+            userParam.food=0;
+            userParam.wood=0;
+            userParam.stone=0;
+            userParam.ore=0;
+            userParam.metal=0;
+            userParam.agriculture=0;
+            userParam.animalHusbandry=0;
+            userParam.trapping=0;
+            userParam.mining=0;
+            userParam.masonry=0;
+            userParam.construction=0;
+            userParam.iron=0;
+            userParam.tool=0;
+            userParam.wheel=0;
+            userParam.road=0;
+            userParam.currency=0;
+            userParam.guild=0;
+            userParam.cart=0;
+            userParam.windmill=0;
+            userParam.sawmill=0;
+            userParam.furnace=0;
+            userParam.rockRoad=0;
+            userParam.market=0;
+            userParam.blacksmith=0;
+            userParam.hut=0;
+            userParam.cabin=0;
+            userParam.house=0;
+            userParam.mine=0;
+            userParam.quarry=0;
+            var user = _.omit(userParam, 'password');
 
-        // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
+            // add hashed password to user object
+            user.hash = bcrypt.hashSync(userParam.password, 10);
 
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+            db.users.insert(
+                user,
+                function (err, doc) {
+                    if (err) deferred.reject(err.name + ': ' + err.message);
 
-                deferred.resolve();
-            });
-    }
+                    deferred.resolve();
+                });
+        }
+
+    return deferred.promise;
+}
+
+
+function createInUse(userParam) {
+    var deferred = Q.defer();
+
+
+    // validation
+    db.users.findOne(
+        { username: userParam.username },
+        function (err, user) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            if (user) {
+                // username already exists
+                deferred.reject('Username "' + userParam.username + '" is already taken');
+            } else {
+                createUserInUse();
+            }
+        });
+
+        function createUserInUse() {
+            // set user object to userParam without the cleartext password
+            userParam.villagers=0;
+            userParam.gatherers=0;
+            userParam.lumberjacks=0;
+            userParam.stoneMiners=0;
+            userParam.metalMiners=0;
+            userParam.oreMiners=0;
+            userParam.farmers=0;
+            userParam.hunters=0;
+            userParam.ranchers=0;
+            userParam.food=0;
+            userParam.wood=0;
+            userParam.stone=0;
+            userParam.ore=0;
+            userParam.metal=0;
+            userParam.agriculture=0;
+            userParam.animalHusbandry=0;
+            userParam.trapping=0;
+            userParam.mining=0;
+            userParam.masonry=0;
+            userParam.construction=0;
+            userParam.iron=0;
+            userParam.tool=0;
+            userParam.wheel=0;
+            userParam.road=0;
+            userParam.currency=0;
+            userParam.guild=0;
+            userParam.cart=0;
+            userParam.windmill=0;
+            userParam.sawmill=0;
+            userParam.furnace=0;
+            userParam.rockRoad=0;
+            userParam.market=0;
+            userParam.blacksmith=0;
+            userParam.hut=0;
+            userParam.cabin=0;
+            userParam.house=0;
+            userParam.mine=0;
+            userParam.quarry=0;
+            var user = _.omit(userParam, 'password');
+
+            // add hashed password to user object
+            user.hash = bcrypt.hashSync(userParam.password, 10);
+
+            db.users.insert(
+                user,
+                function (err, doc) {
+                    if (err) deferred.reject(err.name + ': ' + err.message);
+
+                    deferred.resolve();
+                });
+        }
 
     return deferred.promise;
 }

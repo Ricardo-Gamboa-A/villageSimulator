@@ -373,28 +373,28 @@
 
                     <div class="inside-float" ng-if="vm.user.furnace==1">
                     <p><IMG SRC="app-content/villagers/herrero.png" ALT="some text" HEIGHT=48>
-                    {{vm.user.metalMiners}}</p>
+                    Herreros:{{vm.user.metalMiners}}</p>
                     <button class="btn btn-default btn-xs" ng-click="metalMiners(1)">+1</button>
                     <button class="btn btn-default btn-xs" ng-click="metalMiners(-1)">-1</button>
                     </div>
 
                     <div class="inside-float" ng-if="vm.user.agriculture==true">
                     <p><IMG SRC="app-content/villagers/agricultor.png" ALT="some text" HEIGHT=48>
-                    {{vm.user.farmers}}</p>
+                    Granjeros:{{vm.user.farmers}}</p>
                     <button class="btn btn-default btn-xs" ng-click="farmers(1)">100 comida,<br> 50 madera</button>
                     <button class="btn btn-default btn-xs" ng-click="farmers(-1)">-1</button>
                     </div>
 
                     <div class="inside-float" ng-if="vm.user.divapping==true">
                     <p><IMG SRC="app-content/villagers/cazador.png" ALT="some text" HEIGHT=48>
-                    {{vm.user.hunters}}</p>
+                    Cazadores:{{vm.user.hunters}}</p>
                     <button class="btn btn-default btn-xs" ng-click="hunters(1)">80 madera,<br> 20 metal</button>
                     <button class="btn btn-default btn-xs" ng-click="hunters(-1)">-1</button>
                     </div>
 
                     <div class="inside-float" ng-if="vm.user.animalHusbandry==true">
                     <p><IMG SRC="app-content/villagers/criador.png" ALT="some text" HEIGHT=48>
-                    {{vm.user.ranchers}}</p>
+                    Criadores:{{vm.user.ranchers}}</p>
                     <button class="btn btn-default btn-xs" ng-click="ranchers(1)">80 comida,<br> 80 madera</button>
                     <button class="btn btn-default btn-xs" ng-click="ranchers(-1)">-1</button>
                     </div>

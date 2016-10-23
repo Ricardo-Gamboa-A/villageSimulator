@@ -235,7 +235,7 @@
             }
         }
         $scope.allVillagers = function() {
-            return ($scope.vm.user.villagers + $scope.vm.user.farmers + $scope.vm.user.lumberjacks + $scope.vm.user.stoneMiners + $scope.vm.user.oreMiners + $scope.vm.user.gatherers + $scope.vm.user.hunters + $scope.vm.user.ranchers);
+            return ($scope.vm.user.villagers + $scope.vm.user.farmers + $scope.vm.user.lumberjacks + $scope.vm.user.stoneMiners + $scope.vm.user.oreMiners + $scope.vm.user.gatherers + $scope.vm.user.hunters + $scope.vm.user.ranchers + $scope.vm.user.metalMiners);
         }
         $scope.villagerCost = function(){
             return Math.round(10+10*Math.pow($scope.allVillagers() , 1.4));
